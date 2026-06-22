@@ -1,0 +1,22 @@
+// Cloudflare Worker that serves the portal: static assets only, no Worker code.
+// Workers Builds deploys master with `wrangler deploy`; other branches get a
+// Preview from `wrangler preview`, which is the pull request's status check.
+// tests/unit/hosting.test.ts checks this file.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portal",
+  // At most the newest date the pinned wrangler's workerd supports.
+  "compatibility_date": "2026-11-11",
+  // There is deliberately no `main`, `assets.run_worker_first` or `cache`:
+  // without Worker code, static asset requests are free and unlimited.
+  "assets": {
+    "directory": "./dist",
+    // Paths with no file get dist/404.html with status 404.
+    "not_found_handling": "404-page"
+  },
+  // Required by `wrangler preview`; Previews use the settings above
+  "previews": {},
+  // The whole host belongs to the portal, so it is a custom domain
+  "routes": [{ "pattern": "portal.wxx9248.top", "custom_domain": true }],
+  "workers_dev": false
+}

@@ -1,0 +1,62 @@
+/*
+ * Design tokens: the only place design values are defined. Colours are the
+ * --color-* semantic tokens from @wxx9248/colors, each a light-dark() pair;
+ * the active theme comes from color-scheme (see base.css).
+ */
+:root {
+  /* JetBrains Mono has no CJK glyphs, so service names fall back to these */
+  --font-mono:
+    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas,
+    "PingFang SC", "Hiragino Sans", "Noto Sans CJK SC", "Microsoft YaHei",
+    monospace;
+
+  --text-body: 0.875rem;
+  --text-small: 0.8125rem;
+  --text-name: 0.9375rem;
+  --text-monogram: 1rem;
+  --text-tagline: 1.1875rem;
+  --text-hero: 3.25rem;
+
+  --leading: 1.7;
+  --leading-tight: 1.35;
+
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-3-5: 0.875rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius: 4px;
+  --rule: 1px solid var(--color-border-subtle);
+  --focus-ring: 2px solid var(--color-focus-ring);
+  --focus-offset: 2px;
+
+  --tap-min: 44px;
+  --control-min: 40px;
+  --control-compact: 36px;
+  --icon-size: 2rem;
+  --tile-min: 15rem;
+  --tree-max: 40rem;
+  --statusbar-height: calc(var(--tap-min) + env(safe-area-inset-bottom));
+  --page-max: 65rem;
+  --z-statusbar: 10;
+  --duration: 150ms;
+
+  /* Narrow screens first; the wide values follow below */
+  --page-side: 1rem;
+  --page-padding: 2.25rem var(--page-side) 2rem;
+  --page-gap: 2rem;
+  --panel-padding: var(--space-6) var(--space-3) var(--space-3);
+}
+
+@media (--tablet-up) {
+  :root {
+    --text-tagline: 1.5rem;
+    --text-hero: 5rem;
+    --page-side: var(--space-8);
+    --page-padding: 4rem var(--page-side) 3rem;
+    --page-gap: 2.25rem;
+    --panel-padding: 1.75rem var(--space-5) var(--space-5);
+  }
+}

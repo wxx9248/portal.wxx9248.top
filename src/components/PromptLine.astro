@@ -1,0 +1,57 @@
+---
+import { site } from "@/config/site";
+
+// Fixed text: the shell prompt is part of the look, not of the copy
+interface Props {
+  command: string;
+}
+
+const { command } = Astro.props;
+---
+
+<header class="prompt-line">
+  <p>
+    <span class="user">
+      {site.promptUser}@{site.host}
+    </span>
+    <span class="muted">:</span>
+    <span class="path">~/</span>
+    <span class="muted dollar">$</span>
+    <span class="command">{command}</span>
+  </p>
+</header>
+
+<style>
+  .prompt-line {
+    padding: var(--space-3-5) var(--page-side);
+    overflow: hidden;
+    border-bottom: var(--rule);
+    white-space: nowrap;
+  }
+
+  p {
+    display: flex;
+    min-width: 0;
+  }
+
+  .user {
+    color: var(--color-accent);
+  }
+
+  .path {
+    color: var(--color-text-highlight);
+  }
+
+  .muted {
+    color: var(--color-text-muted);
+  }
+
+  .dollar {
+    margin-right: 1ch;
+  }
+
+  .command {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

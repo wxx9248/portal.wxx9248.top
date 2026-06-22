@@ -1,0 +1,26 @@
+// Every string the site shows. Keys ending in .one/.other are plural forms
+export const strings = {
+  "bar.mode": "NORMAL",
+  "count.hosts.one": "{count} host",
+  "count.hosts.other": "{count} hosts",
+  "count.matching.one": "{shown} of {count} service",
+  "count.matching.other": "{shown} of {count} services",
+  "count.services.one": "{count} service",
+  "count.services.other": "{count} services",
+  "filter.empty": "No services match “{query}”.",
+  "filter.label": "Filter services",
+  "filter.placeholder": "filter services…",
+  "hero.tagline": "Self-hosted services across the homelab.",
+  "hero.tree": "Hosts",
+  "meta.description": "A launcher for self-hosted services across the homelab.",
+  "meta.title": "Portal",
+  "notFound.back": "Back to the portal",
+  "notFound.command": "cd ~/404",
+  "notFound.message": "No such file or directory.",
+  "notFound.title": "Not found",
+  "panel.filtered": "{shown}/{count}",
+  "prompt.command": "tree ~/services",
+  "separator": "·",
+  "theme.toggle": "Switch theme",
+  "tile.newTab": "(opens in a new tab)"
+} as const;

@@ -1,0 +1,33 @@
+---
+import { t, tCount } from "@/i18n/t";
+import Base from "@/layouts/Base.astro";
+import FilterBar from "@/components/FilterBar.astro";
+import Hero from "@/components/Hero.astro";
+import HostPanel from "@/components/HostPanel.astro";
+import PromptLine from "@/components/PromptLine.astro";
+import StatusBar from "@/components/StatusBar.astro";
+import { buildPortal } from "@/lib/entries/model";
+import { loadEntries } from "@/lib/entries/load";
+
+const portal = buildPortal(loadEntries());
+const counts = [
+  tCount("count.hosts", portal.hostCount),
+  tCount("count.services", portal.serviceCount)
+].join(` ${t("separator")} `);
+---
+
+<Base canonical description={t("meta.description")} title={t("meta.title")}>
+  <PromptLine command={t("prompt.command")} />
+  <main class="page">
+    <Hero groups={portal.groups} />
+    <FilterBar total={portal.serviceCount} />
+    {portal.groups.map((group) => (
+      <HostPanel group={group} />
+    ))}
+  </main>
+  <StatusBar label={counts} />
+  <script>
+    import "@/scripts/filter";
+    import "@/scripts/icons";
+  </script>
+</Base>

@@ -1,0 +1,84 @@
+---
+import { t, tCount } from "@/i18n/t";
+
+interface Props {
+  // How many services the page lists
+  total: number;
+}
+
+const { total } = Astro.props;
+---
+
+<div class="filter" data-filter>
+  <label class="field">
+    <span class="visually-hidden">{t("filter.label")}</span>
+    <span class="slash" aria-hidden="true">
+      /
+    </span>
+    <input
+      type="search"
+      data-filter-input
+      placeholder={t("filter.placeholder")}
+      autocomplete="off"
+      spellcheck="false"
+      enterkeyhint="search"
+    />
+  </label>
+  <p class="count" data-filter-count aria-live="polite">
+    {tCount("count.matching", total, { shown: total })}
+  </p>
+</div>
+<p class="empty" data-filter-empty hidden></p>
+
+<style>
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    align-items: center;
+  }
+
+  /* Filtering needs JavaScript, so no-script visitors never see the bar */
+  :global(html:not(.js)) .filter {
+    display: none;
+  }
+
+  .field {
+    display: flex;
+    flex: 1 1 18rem;
+    gap: var(--space-2);
+    align-items: center;
+    min-height: var(--tap-min);
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-border-input);
+    border-radius: var(--radius);
+  }
+
+  .field:focus-within {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  .slash {
+    color: var(--color-accent);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-2) 0;
+    border: 0;
+    background: transparent;
+    outline: none;
+  }
+
+  input::placeholder {
+    color: var(--color-text-placeholder);
+  }
+
+  .count,
+  .empty {
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+  }
+</style>

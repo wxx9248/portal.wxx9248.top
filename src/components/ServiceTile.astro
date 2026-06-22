@@ -1,0 +1,94 @@
+---
+import type { Service } from "@/lib/entries/model";
+import ServiceIcon from "@/components/ServiceIcon.astro";
+import { t } from "@/i18n/t";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<li data-service data-search={service.searchText}>
+  <a class="tile" href={service.url} target="_blank" rel="noopener noreferrer">
+    <ServiceIcon service={service} />
+    <span class="text">
+      <span class="name">{service.name}</span>
+      <span class="path">{service.path}</span>
+    </span>
+    <span class="arrow" aria-hidden="true">
+      ↗
+    </span>
+    <span class="visually-hidden">{t("tile.newTab")}</span>
+  </a>
+</li>
+
+<style>
+  .tile {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    height: 100%;
+    min-height: var(--tap-min);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius);
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    .tile:hover {
+      border-color: var(--color-border-default);
+      background: var(--color-hover-bg);
+      color: var(--color-text-primary);
+    }
+  }
+
+  .text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    line-height: var(--leading-tight);
+  }
+
+  .name {
+    font-size: var(--text-name);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+
+  .path {
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+    overflow-wrap: anywhere;
+  }
+
+  .arrow {
+    align-self: flex-start;
+    color: var(--color-accent);
+    opacity: 0;
+  }
+
+  .tile:focus-visible .arrow {
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    .tile:hover .arrow {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tile,
+    .arrow {
+      transition:
+        background-color var(--duration),
+        border-color var(--duration),
+        opacity var(--duration);
+    }
+  }
+</style>

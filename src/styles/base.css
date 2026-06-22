@@ -1,0 +1,98 @@
+/*
+ * Element defaults. The site is a terminal, so text is monospace at the
+ * chrome size.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+ * @wxx9248/colors sets "light dark", which follows the system. Naming one
+ * scheme makes the computed value say which theme is active, and the
+ * data-theme rules below (set by the toggle) win by specificity.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding-bottom: var(--statusbar-height);
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  line-height: var(--leading);
+}
+
+a {
+  color: var(--color-link);
+  text-underline-offset: 0.2em;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-link-hover);
+  }
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+button,
+input {
+  color: inherit;
+  font: inherit;
+}
+
+input {
+  /* iOS Safari zooms into anything smaller */
+  font-size: 1rem;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Scripts hide things with the attribute; no display rule may undo it */
+[hidden] {
+  display: none !important;
+}
