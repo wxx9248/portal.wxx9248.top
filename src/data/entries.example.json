@@ -1,0 +1,15 @@
+{
+  "alpha.example.com": [
+    { "name": "Database Admin", "path": "/management/db/" },
+    { "name": "Torrents", "path": "/management/torrents/" },
+    { "name": "File Share", "path": "/shared/" }
+  ],
+  "beta.example.com": [
+    { "name": "Chat Server Admin", "path": "/management/chat/" }
+  ],
+  "gamma.example.com": [
+    { "name": "Torrents", "path": "/management/torrents/" },
+    { "name": "File Share", "path": "/shared/" },
+    { "name": "File Drop", "path": "/drop/" }
+  ]
+}

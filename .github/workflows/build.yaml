@@ -1,0 +1,63 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Setup pnpm
+        run: |
+          npm install --global pnpm
+      - name: Fetching node modules
+        run: |
+          pnpm install
+          cd ..
+      - name: Build distributable
+        run: |
+          pnpm build
+          cd ..
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: 'dist'
+          path: |
+            dist/
+  release:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Package distributable
+        run: tar -cJvf dist.tar.xz -C dist .
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          draft: false
+          prerelease: false
+          files: |
+            dist.tar.xz
+          tag_name: latest
+          generate_release_notes: true
+          make_latest: true

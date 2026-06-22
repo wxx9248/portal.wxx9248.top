@@ -1,0 +1,29 @@
+{
+    "name": "portal",
+    "version": "2.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "type-check": "vue-tsc --noEmit",
+        "entries:env": "node scripts/entries-env.mjs",
+        "format": "prettier --write src"
+    },
+    "dependencies": {
+        "vue": "^3.5.38"
+    },
+    "devDependencies": {
+        "@fontsource/jetbrains-mono": "^5.2.8",
+        "@fontsource/space-grotesk": "^5.2.10",
+        "@tailwindcss/vite": "^4.3.1",
+        "@types/node": "^26.0.0",
+        "@vitejs/plugin-vue": "^6.0.7",
+        "@vue/tsconfig": "^0.9.1",
+        "prettier": "^3.8.4",
+        "tailwindcss": "^4.3.1",
+        "typescript": "^6.0.3",
+        "vite": "^8.0.16",
+        "vue-tsc": "^3.3.5"
+    }
+}
