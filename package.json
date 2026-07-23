@@ -11,7 +11,7 @@
         "format": "prettier --write src"
     },
     "dependencies": {
-        "vue": "^3.5.38"
+        "vue": "^3.5.39"
     },
     "devDependencies": {
         "@fontsource/jetbrains-mono": "^5.2.8",
