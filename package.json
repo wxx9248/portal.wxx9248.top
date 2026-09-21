@@ -20,7 +20,7 @@
         "@types/node": "^26.6.1",
         "@vitejs/plugin-vue": "^6.0.9",
         "@vue/tsconfig": "^0.9.1",
-        "prettier": "^3.9.6",
+        "prettier": "^3.9.8",
         "tailwindcss": "^4.3.3",
         "typescript": "^6.0.3",
         "vite": "^8.3.0",
