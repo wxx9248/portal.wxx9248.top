@@ -23,5 +23,12 @@
       "custom_domain": true
     }
   ],
-  "workers_dev": false
+  "workers_dev": false,
+  /**
+   * Worker Previews
+   * Workers Builds runs `wrangler preview` for non-production branches (PRs),
+   * which requires this block. Preview URLs stay off because workers_dev is off.
+   * https://developers.cloudflare.com/workers/previews/configuration/
+   */
+  "previews": {}
 }
